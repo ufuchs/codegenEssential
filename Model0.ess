@@ -1,0 +1,75 @@
+//Model0.ess
+//Model created by ufuchs on 08/05/2011 17:19:50 using Essential
+
+using lwc2011;
+
+namespace lwc2011.model0
+{
+    Model m0
+    {
+    	PrimitiveTypes = [string, date];
+    	Entities = [Person, Car];
+    }
+    
+    Type string {
+    	Name = "string";
+    }
+    
+    Type date {
+    	Name = "date";
+    }
+    
+    Entity Person {
+    
+    	Name = "Person";
+    	
+    	Properties = [
+    	
+    		Property pe1 {
+    			Name = "name";
+    			Type = string;
+    		},
+    		
+    		Property pe2 {
+    			Name = "firstName";
+    			Type = string;
+    		},
+
+    		Property pe3 {
+    			Name = "birthdate";
+    			Type = date;
+    		},
+    		
+    		Property pe4 {
+    			Name = "ownedCar";
+    			Type = Car;
+    		}
+    		
+    	];
+    
+    }
+
+    Entity Car {
+    
+    	Name = "Car";	
+    	
+    	Properties = [
+    	
+    		Property ce1 {
+    			Name = "make";
+    			Type = string;
+    		},
+    		
+    		Property ce2 {
+    			Name = "model";
+    			Type = string;
+    		}
+
+    		
+    		
+    	];
+    
+    }
+
+    
+}

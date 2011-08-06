@@ -1,0 +1,27 @@
+//lwc2011.meta
+//Metamodel created by ufuchs on 08/05/2011 17:08:31 using Essential
+
+//extends Namespace;
+
+namespace lwc2011
+{
+    class Model
+    {
+    	List<Type> PrimitiveTypes;
+    	List<Entity> Entities;
+    }
+    
+    class Type
+    {
+    	string Name;
+    }
+    
+    class Entity : Type {
+    	List<Property> Properties;
+    }
+    
+    class Property {
+    	Type Type;
+    	string Name;
+    }
+}

@@ -1,0 +1,44 @@
+//javaPojo.stg
+//Template group created by ufuchs on 08/05/2011 18:51:15 using Essential
+
+group javaPojo;
+
+genPojo(entity) ::= <<
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+
+public class $entity.Name$ implements Serializiable {
+
+	//Private members
+	$entity.Properties:genPrivateMember(); separator="\n"$
+	
+	$entity.Properties:genMemberAccessor(); separator="\n"$
+
+}
+
+>>
+
+genPrivateMember()::= <<
+private $it.Type:genType()$ $it.Name; format="camelcase"$;
+>>
+
+genType()::= <<$typeMapper.(it.Name)$>>
+
+genMemberAccessor() ::= <<
+public $it.Type:genType()$ get$it.Name; format="pascalcase"$ {
+	return this.$it.Name; format="camelcase"$;
+}
+
+public void set$it.Name; format="pascalcase"$($it.Type:genType()$ value) {
+	this.$it.Name; format="camelcase"$ = value;
+}
+
+>>
+
+typeMapper ::=
+[
+	"string" : "String",
+	"date" : "Date",
+	default : key
+]
