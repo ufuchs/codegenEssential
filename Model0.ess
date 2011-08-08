@@ -7,8 +7,12 @@ namespace lwc2011.model0
 {
     Model m0
     {
-    	PrimitiveTypes = [string, date];
+    	PrimitiveTypes = [int, string, date];
     	Entities = [Person, Car];
+    }
+
+    Type int {
+    	Name = "int";
     }
     
     Type string {
@@ -24,6 +28,11 @@ namespace lwc2011.model0
     	Name = "Person";
     	
     	Properties = [
+
+    		Property pe0 {
+    			Name = "id_Person";
+    			Type = int;
+    		},
     	
     		Property pe1 {
     			Name = "name";
@@ -41,6 +50,7 @@ namespace lwc2011.model0
     		},
     		
     		Property pe4 {
+    			IsEntity = true;
     			Name = "ownedCar";
     			Type = Car;
     		}
@@ -54,6 +64,11 @@ namespace lwc2011.model0
     	Name = "Car";	
     	
     	Properties = [
+    	
+    		Property ce0 {
+    			Name = "id_Car";
+    			Type = int;
+    		},
     	
     		Property ce1 {
     			Name = "make";

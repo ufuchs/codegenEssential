@@ -1,0 +1,24 @@
+//db.meta
+//Metamodel created by ufuchs on 08/07/2011 13:37:15 using Essential
+
+//extends Namespace;
+
+namespace db
+{
+    class Schema
+    {
+    	string Name;
+    	List<Table> Tables;
+    }
+    
+    class Table {
+    	string Name;
+    	List<Column> Columns;
+    }
+    
+    class Column {
+    	bool? IsTable;
+    	string Name;
+    	string Type;
+    }
+}

@@ -1,0 +1,77 @@
+//objectPascalPopo.stg
+//Template group created by ufuchs on 08/06/2011 20:15:32 using Essential
+
+group objectPascalPopo;
+
+genPopo(entity) ::= <<
+unit $entity.Name$;
+
+interface
+
+type
+
+  ////////////////////////////////////////
+  //
+  // T$entity.Name$
+  //
+  T$entity.Name$ = class
+  private
+  
+    $entity.Properties:genMember(); separator="\n"$
+    
+    $entity.Properties:genAccessor(); separator="\n"$
+    
+  public
+  
+    $entity.Properties:genProperty(); separator="\n"$
+  
+  end;
+
+implementation
+$entity.Properties:genMemberAccessor(); separator="\n"$
+
+end.
+>>
+
+genAccessor() ::= <<
+function Get$it.Name; format="pascalcase"$ : $it.Type:genType()$;
+procedure Set$it.Name; format="pascalcase"$($it.Type:genType()$ Value);
+
+>>
+
+genMember()::= <<
+F$it.Name; format="pascalcase"$ : $it.Type:genType()$;
+>>
+
+genType() ::= <<$typeMapper.(it.Name)$>>
+
+genMemberAccessor() ::= <<
+
+//
+// Get$it.Name; format="pascalcase"$
+//
+function Get$it.Name; format="pascalcase"$ : $it.Type:genType()$;
+begin
+  Result := F$it.Name; format="pascalcase"$;
+end;
+
+//
+// Set$it.Name; format="pascalcase"$
+//
+procedure Set$it.Name; format="pascalcase"$($it.Type:genType()$ Value);
+begin
+  F$it.Name; format="pascalcase"$ := Value;
+end;
+>>
+
+genProperty() ::= <<
+property $it.Name; format="pascalcase"$ : $it.Type:genType()$ read Get$it.Name; format="pascalcase"$ write Set$it.Name; format="pascalcase"$;
+>>
+
+typeMapper ::=
+[
+	"string" : "String",
+	"date" : "Date",
+	"int" : "Integer",
+	default : key
+]

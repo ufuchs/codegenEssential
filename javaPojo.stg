@@ -20,7 +20,7 @@ public class $entity.Name$ implements Serializiable {
 >>
 
 genPrivateMember()::= <<
-private $it.Type:genType()$ $it.Name; format="camelcase"$;
+private $it.Type:genType()$ $it.Name; format="pasalcase"$;
 >>
 
 genType()::= <<$typeMapper.(it.Name)$>>
@@ -40,5 +40,6 @@ typeMapper ::=
 [
 	"string" : "String",
 	"date" : "Date",
+	"int" : "Integer",
 	default : key
 ]

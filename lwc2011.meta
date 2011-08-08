@@ -21,6 +21,7 @@ namespace lwc2011
     }
     
     class Property {
+    	bool? IsEntity;
     	Type Type;
     	string Name;
     }

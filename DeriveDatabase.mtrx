@@ -1,0 +1,33 @@
+//DeriveDatabase.mtrx
+//M2M Transformation created by ufuchs on 08/07/2011 13:40:38 using Essential
+
+using lwc2011;
+using db;
+
+namespace deriveDatabase
+{
+    
+    m2m_transformation Schema DeriveDb(Model m)
+    {
+        Rule1: Schema s << Model m
+        {
+            s.Name = "ModelPersistence";
+            s.Tables = [ Table << forall m.Entities ]; 
+        }
+
+        Rule2: Table t << Entity e
+        {
+            t.Name = e.Name;
+            t.Columns = [ Column << forall e.Properties ];
+        }
+        
+        Rule3: Column c << Property p
+        {
+            c.Name = p.Name;
+            c.IsTable = p.IsEntity;
+            c.Type = p.Type.Name;
+        }
+        
+    }
+    
+}

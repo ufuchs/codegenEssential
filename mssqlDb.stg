@@ -1,0 +1,32 @@
+//mssqlDb.stg
+//Template group created by ufuchs on 08/07/2011 14:20:35 using Essential
+
+group mssqlDb;
+
+genMssql(table) ::= <<
+create table $table.Name; format="pasalcase"$ (
+
+  $table.Columns:genColumn(); separator="\n"$
+
+)
+>>
+
+genColumn() ::= <<
+$if(it.IsTae)$$it.Name; format="pascalcase"$ $typeMapper.(it.Type)$
+$else$
+$it.Name; format="pascalcase"$ $typeMapper.(it.Type)$
+$endif$
+>>
+
+genColumn1() ::= <<
+test
+>>
+
+
+typeMapper ::=
+[
+	"string" : "VARCHAR2()",
+	"date" : "Date",
+	"int" : "Int",
+	default : key
+]
